@@ -1071,12 +1071,6 @@ ScriptsOnlyBuild:
     className: ScoreController
   - hash:
       serializedVersion: 2
-      Hash: 6191458d0c4f9953be26f90534bba1ea
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: RBController
-  - hash:
-      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Mirror.Examples.dll
     namespaceName: Mirror.Examples.MultipleAdditiveScenes

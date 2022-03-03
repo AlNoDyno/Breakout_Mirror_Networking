@@ -5,16 +5,9 @@ using UnityEngine;
 
 public class RacketController : NetworkBehaviour
 {
-    private GameObject Parent;
-
-    private float racketW;
-    private float racketH;
-
-    [Header("Ball")]
     public GameObject ballPrefab;
-
     public GameObject ballGO;
-    BallController ballController = null;
+    private BallController ballController = null;
 
     [SyncVar]
     public bool ballFlying;
@@ -24,6 +17,11 @@ public class RacketController : NetworkBehaviour
 
     [SyncVar]
     public Vector3 ballPosition;
+
+    private GameObject Parent;
+
+    private float racketW;
+    private float racketH;
 
     private float speed = 200f;
 
@@ -56,7 +54,7 @@ public class RacketController : NetworkBehaviour
             }
         }
 
-        if (GetComponent<NetworkIdentity>().hasAuthority)//make sure this is an object that we ae controlling
+        if (GetComponent<NetworkIdentity>().hasAuthority)
         {
             if (Input.GetKey(launchBall) && !ballFlying)
             {
@@ -64,7 +62,7 @@ public class RacketController : NetworkBehaviour
             }
         }
 
-        if (GetComponent<NetworkIdentity>().isClient)//if we are a client update our rigidbody with the servers rigidbody info
+        if (GetComponent<NetworkIdentity>().isClient)
         {
             if (!ballFlying)
             {
@@ -81,7 +79,7 @@ public class RacketController : NetworkBehaviour
             }
         }
 
-        if (GetComponent<NetworkIdentity>().isServer)//if we are the server update the varibles with our cubes rigidbody info
+        if (GetComponent<NetworkIdentity>().isServer)
         {
             if (!ballFlying)
             {
@@ -104,7 +102,6 @@ public class RacketController : NetworkBehaviour
     void RpcOnFire(Vector2 vel, Vector2 pos)
     {
         ballController.ballRB.velocity = vel;
-        ballController.ballRB.position = pos;
     }
 
     [Command]
@@ -116,7 +113,6 @@ public class RacketController : NetworkBehaviour
         ballController.ballRB.velocity = ballVelocity;
 
         ballPosition = ballGO.transform.position;
-        //ballController.ballRB.position = ballPosition;
 
         RpcOnFire(ballVelocity, ballPosition);
     }
@@ -157,8 +153,6 @@ public class RacketController : NetworkBehaviour
 
     private bool RacketOutLeft()
     {
-        RectTransform ParentRectTransform = Parent.GetComponentInParent<RectTransform>();
-
         Vector2 newPosition = new Vector2(transform.position.x, transform.position.y);
         Vector2 pLeft = new Vector2(-racketW / 2, racketH / 2) + newPosition;
 
@@ -183,7 +177,6 @@ public class RacketController : NetworkBehaviour
 
         if (ballGO == null)
         {
-            // Instantiate the player UI as child of the Players Panel
             ballGO = Instantiate(ballPrefab, CanvasUI.instance.playersPanel);
             ballGO.transform.SetParent(CanvasUI.instance.playersPanel);
 
@@ -206,7 +199,6 @@ public class RacketController : NetworkBehaviour
 
         if (ballGO == null)
         {
-            // Instantiate the player UI as child of the Players Panel
             ballGO = Instantiate(ballPrefab, CanvasUI.instance.playersPanel);
             ballGO.transform.SetParent(CanvasUI.instance.playersPanel);
 

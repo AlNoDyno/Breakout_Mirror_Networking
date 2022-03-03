@@ -6,12 +6,8 @@ using UnityEngine;
 
 public class BallController : NetworkBehaviour
 {
-    private GameObject Parent;
-
     public Rigidbody2D ballRB;
     public float ballH;
-
-    private float speed = 500f;
 
     [SyncVar]
     public Vector2 Position;
@@ -19,10 +15,10 @@ public class BallController : NetworkBehaviour
     [SyncVar]
     public Vector2 Velocity;
 
+    private float speed = 500f;
+
     void OnEnable()
     {
-        Parent = CanvasUI.instance.playersPanel.gameObject;
-
         transform.SetParent(CanvasUI.instance.playersPanel);
 
         ballRB = GetComponent<Rigidbody2D>();

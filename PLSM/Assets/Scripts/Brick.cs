@@ -8,7 +8,6 @@ public class Brick : NetworkBehaviour
 {
     public ScoreController scoreController;
     public Image img;
-    private Rigidbody2D rb2d;
 
     [SyncVar]
     public bool alive;
@@ -20,7 +19,6 @@ public class Brick : NetworkBehaviour
     {
         transform.SetParent(CanvasUI.instance.bricksPanel);
 
-        rb2d = GetComponent<Rigidbody2D>();
         img = GetComponent<Image>();
 
         GetComponent<Image>().color = color;

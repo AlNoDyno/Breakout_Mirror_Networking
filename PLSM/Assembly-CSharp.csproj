@@ -64,7 +64,6 @@
     <Compile Include="Assets\Scripts\NetworkManagerPLS.cs" />
     <Compile Include="Assets\Scripts\WallController.cs" />
     <Compile Include="Assets\Scripts\ScoreController.cs" />
-    <Compile Include="Assets\Scripts\RBController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Externals\Mirror\Plugins\Mono.Cecil\Mono.CecilX.dll" />
